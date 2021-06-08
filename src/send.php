@@ -58,6 +58,10 @@ class Send
 
     public static function checkOTP($phone, $otp)
     {
+        $phone = Self::formatPhone($phone);
+        if($phone == false) {
+            return response()->json(["message" => "incorrect phone format"], 401);
+        }
         $cache = Cache::get($phone);
         if (!is_null($cache)) {
             if ($cache == $otp) {
