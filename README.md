@@ -13,7 +13,7 @@ $ composer require capital/oursms
 ```
 
 ```sh
-$ php artisan vendor:publish --provider=g4t\Pattern\PatternServiceProvider 
+$ php artisan vendor:publish --provider=Capital\OurSms\OurSmsServiceProvider 
 ```
 
 ## Usage
