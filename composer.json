@@ -1,0 +1,29 @@
+{
+    "name": "g4t/oursms",
+    "description": "oursms implementation",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hussein4alaa",
+            "email": "hussein4alaa@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Capital\\OurSms\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Capital\\OurSms\\OurSmsServiceProvider"
+            ]
+        }
+    }
+
+}
