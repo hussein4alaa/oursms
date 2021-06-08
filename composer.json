@@ -2,9 +2,6 @@
     "name": "capital/oursms",
     "description": "oursms implementation",
     "type": "library",
-    "require": {
-        "guzzlehttp/guzzle": "^7.3"
-    },
     "license": "MIT",
     "authors": [
         {
