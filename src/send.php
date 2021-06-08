@@ -1,6 +1,6 @@
 <?php
 
-namespace Capital\Oursms;
+namespace Capital\OurSms;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -27,13 +27,13 @@ class Send
         if($format_phone == false) {
             return response()->json(["message" => "incorrect phone format"], 401);
         }
-        $response = Http::post('https://oursms.app/api​/v1​/SMS​/Add​/SendOneSms', [
-            'userId' => self::id(),
-            'key' => self::id(),
-            'phoneNumber' => $phone,
-            'Message' => $message,
+        $response = Http::post('https://oursms.app/api/v1/sms/Add/SendOneSms', [
+            'userId' => (int)self::id(),
+            'key' => (string)self::key(),
+            'phoneNumber' => (string)$phone,
+            'Message' => (string)$message,
         ]);
-        return $response;
+        return $response->json();
     }
 
 
@@ -46,13 +46,13 @@ class Send
         $otp = rand('1000', '9999');
         $expire_at = now()->addMinutes($expire_minutes);
         Cache::put($phone, $otp, $expire_at);
-        $response = Http::post('https://oursms.app/api​/v1​/SMS​/Add​/SendOtpSms', [
-            'userId' => self::id(),
-            'key' => self::id(),
-            'phoneNumber' => $phone,
-            'otp' => $otp,
+        $response = Http::post('https://oursms.app/api/v1/sms/Add/SendOtpSms', [
+            'userId' => (int)self::id(),
+            'key' => (string)self::key(),
+            'phoneNumber' => (string)$phone,
+            'otp' => (string)$otp,
         ]);
-        return $response;
+        return $response->json();
     }
 
 
@@ -62,15 +62,15 @@ class Send
         if (!is_null($cache)) {
             if ($cache == $otp) {
                 $response = [
-                    'status' => false,
-                    'message' => 'OTP timeout',
-                    'code' => 401,
-                ];
-            } else {
-                $response = [
                     'status' => true,
                     'message' => 'otp was matched',
                     'code' => 200,
+                ];
+            } else {
+                $response = [
+                    'status' => false,
+                    'message' => 'OTP timeout',
+                    'code' => 401,
                 ];
             }
         } else {
@@ -116,7 +116,5 @@ class Send
         } else {
             return false;
         }
-
-        return $phone;
     }
 }

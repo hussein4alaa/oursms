@@ -1,6 +1,6 @@
 <?php
 
-namespace Capital\Oursms;
+namespace Capital\OurSms;
 
 use Illuminate\Support\ServiceProvider;
 
