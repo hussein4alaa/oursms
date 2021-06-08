@@ -1,5 +1,5 @@
 {
-    "name": "g4t/oursms",
+    "name": "capital/oursms",
     "description": "oursms implementation",
     "type": "library",
     "require": {
