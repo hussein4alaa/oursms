@@ -45,7 +45,7 @@ class Send
         }
         $otp = rand('1000', '9999');
         $expire_at = now()->addMinutes($expire_minutes);
-        Cache::put($phone, $otp, $expire_at);
+        Cache::put($format_phone, $otp, $expire_at);
         $response = Http::post('https://oursms.app/api/v1/sms/Add/SendOtpSms', [
             'userId' => (int)self::id(),
             'key' => (string)self::key(),
